@@ -8,6 +8,15 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
+  <div class="col-xs-3">
+    <% if user_signed_in? %>
+      Hey, <%= current_user.email %> |
+      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "New User?", new_user_registration_path %> |
+      <%= link_to "Sign In", new_user_session_path %>
+    <% end %>
+  </div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
