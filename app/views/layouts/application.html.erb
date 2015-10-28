@@ -8,6 +8,7 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
+  <h2><%= link_to "Album of the Day", root_path %></h2>
   <div class="col-xs-3">
     <% if user_signed_in? %>
       Hey, <%= current_user.email %> |
