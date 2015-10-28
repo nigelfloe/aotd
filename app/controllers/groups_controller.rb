@@ -8,7 +8,10 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.email = "#{@group.slug}@#{ENV['domain']}"
     @group.users << current_user
+    @group.create_mailing_list
+
     if @group.save
       flash[:notice] = "You successfully created a group"
       redirect_to @group
@@ -32,6 +35,6 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:name, :email)
+    params.require(:group).permit(:name, :description)
   end
 end

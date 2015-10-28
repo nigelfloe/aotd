@@ -2,6 +2,7 @@ class AlbumMailer < ApplicationMailer
   def album_email(user)
     @user = user
     mg_client = Mailgun::Client.new(ENV['api_key'])
+    binding.pry
     message_params = {
       from:     ENV['gmail_username'],
       to:       @user.email,
