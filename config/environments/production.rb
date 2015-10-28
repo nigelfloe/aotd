@@ -3,14 +3,14 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: Rails.application.secrets.host }
 
   config.action_mailer.delivery_method = :smtp
-  # SMTP settings for gmail
+  # SMTP settings for mailgun
   config.action_mailer.smtp_settings = {
-    address:              "smtp.gmail.com",
     port:                 587,
-    user_name:            ENV['gmail_username'],
-    password:             ENV['gmail_password'],
-    authentication:       "plain",
-    enable_starttls_auto: true
+    address:              "smtp.mailgun.com",
+    domain:               ENV['domain'],
+    user_name:            ENV['username'],
+    password:             ENV['password'],
+    authentication:       :plain,
   }
 
   config.cache_classes = true
@@ -37,4 +37,6 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.active_record.dump_schema_after_migration = false
+
+  config.active_job.queue_adapter = :delayed_job
 end
