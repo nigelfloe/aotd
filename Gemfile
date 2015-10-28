@@ -65,3 +65,5 @@ end
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'devise'
 gem 'figaro'
+gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+gem 'delayed_job_active_record'
