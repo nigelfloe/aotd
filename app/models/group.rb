@@ -13,4 +13,12 @@ class Group < ActiveRecord::Base
                     name: name,
                     description: description)
   end
+
+  def add_list_member(user)
+    RestClient.post("https://api:#{ENV['api_key']}" \
+                    "@api.mailgun.net/v3/lists/#{email}/members",
+                    subscribed: true,
+                    address: user.email,
+                    name: user.full_name)
+  end
 end

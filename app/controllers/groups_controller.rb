@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
     @group.email = "#{@group.slug}@#{ENV['domain']}"
     @group.users << current_user
     @group.create_mailing_list
-
+    @group.add_list_member(current_user)
     if @group.save
       flash[:notice] = "You successfully created a group"
       redirect_to @group
